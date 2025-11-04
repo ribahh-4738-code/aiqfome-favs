@@ -18,5 +18,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('client/{client}/favs', [FavController::class, 'store']);
     Route::get('client/{client}/favs', [FavController::class, 'index']);
+    Route::get('client/{client}/favs/{fav}', [FavController::class, 'show']);
     Route::delete('client/{client}/favs/{external_product_id}', [FavController::class, 'destroy']);
 });

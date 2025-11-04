@@ -16,14 +16,17 @@ class ProductController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * GET /api/products/{product}
      */
     public function show(string $id)
     {
+        // execute
         $product = $this->service->fetchAndCacheProduct($id);
         if (!$product) {
             return response()->json(['message' => 'Product not found.'], 404);
         }
+
+        // output
         return response()->json($product);
     }
 }

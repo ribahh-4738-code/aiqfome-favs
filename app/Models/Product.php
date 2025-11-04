@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
-    use HasFactory;
-
+    // db table
     protected $table = 'product';
+
+    use HasFactory;
 
     /**
      * @var array<int, string>
@@ -32,6 +33,7 @@ class Product extends Model
 
     public function clients()
     {
+        // query
         return $this->belongsToMany(Client::class, 'fav', 'product_id', 'client_id')
             ->using(Fav::class)
             ->withPivot('review', 'id')

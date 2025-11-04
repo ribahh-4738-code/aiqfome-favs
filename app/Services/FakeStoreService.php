@@ -11,14 +11,19 @@ class FakeStoreService
 
     public function fetchAndCacheProduct(int $externalId): ?Product
     {
+        // validate
         $product = Product::where('external_id', $externalId)->first();
         if ($product) {
             return $product;
         }
+
+        // api
         $response = Http::get("{$this->baseUrl}products/{$externalId}");
         if (!$response->successful()) {
             return null;
         }
+
+        // output | execute
         $data = $response->json();
 
         return Product::create([

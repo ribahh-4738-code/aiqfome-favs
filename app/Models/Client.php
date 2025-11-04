@@ -9,10 +9,11 @@ use Laravel\Sanctum\HasApiTokens;
 
 class Client extends Authenticatable
 {
+    // db table
+    protected $table = 'client';
+
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasApiTokens, HasFactory, Notifiable;
-
-    protected $table = 'client';
 
     /**
      * The attributes that are mass assignable.
@@ -49,6 +50,7 @@ class Client extends Authenticatable
 
     public function favorites()
     {
+        // query
         return $this->belongsToMany(Product::class, 'fav', 'client_id', 'product_id')
             ->using(Fav::class)
             ->withPivot('review', 'id')

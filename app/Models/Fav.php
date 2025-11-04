@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class Fav extends Pivot
 {
+    // db table
     protected $table = 'fav';
 
     public $incrementing = true;
@@ -17,10 +18,13 @@ class Fav extends Pivot
 
     public function client()
     {
+        // query
         return $this->belongsTo(Client::class);
     }
+
     public function product()
     {
+        // query
         return $this->belongsTo(Product::class);
     }
 }
